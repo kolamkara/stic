@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Signup | Surveillance</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body class="centered-form">
+	<div class="centered-form__form">
+		<form action="/signup" method="post">
+			<div class="form-field">
+				<h3>Signup<h3>
+				</div>
+				<div class="form-field">
+					<label>User name</label>
+					<input type="text" name="username" autofocus/>
+				</div>
+				<div class="form-field">
+					<label>Password</label>
+					<input type="text" name="password"/>
+				</div>
+
+					<div class="form-field">
+						<label>Access Room 1</label>
+						<input type="text" name="accessRooms[]"/>
+					</div>
+
+					<ol id="roomFields"></ol>
+
+				<div class="form-field">
+					<button type="button" onclick="newRoom()">Add Room</button>
+				</div>
+				<div class="form-field">
+					<button>Signup</button>
+				</div>
+			</form>
+
+
+		<script id="room-template" type="text/template">
+			<div class="form-field">
+				<label>Access Room {{no}}</label>
+				<input type="text" name="accessRooms[]" autofocus/>
+			</div>
+  	</script>
+
+		<script src="/js/libs/jquery-3.3.1.min.js"></script>
+  	<script src="/js/libs/mustache.js"></script>
+		<script src="/js/signup.js"></script>
+
+	</body>
+<!--	<script type="text/javascript" src="file:///E:/MEC/STIC/resources/signup.js"></script> -->
+
+	</html>

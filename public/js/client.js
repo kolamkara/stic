@@ -1,9 +1,15 @@
-var socket=io();
+
+// console.log('request header :',req.query);
 var pc=[],done;
-var username=window.prompt("Enter the username");
+// var username=window.prompt("Enter the username");
+var url = window.location.href;
+var username = url.split('=')[1];
+console.log('User name from URL :');
+var socket=io();
 socket.on('connect',()=>{
   console.log('connected');
   // socket.emit('clientID');
+  // console.log('SECRET_KEY:',SECRET_KEY);
   socket.emit('getUser',username);
   // socket.emit('join',room1);
   console.log(socket.id);
@@ -44,9 +50,10 @@ socket.on('message', function(dobj) {
 socket.on('myId',(id)=>{
   console.log('id',id);
   createPeerConnection(id);
+  var pc_config= {'iceServers': [{'url': 'stun:stun.l.google.com:19302'}]};
   function createPeerConnection(id) {
     try {
-        pc[id] = new RTCPeerConnection(null);
+        pc[id] = new RTCPeerConnection(pc_config);
         pc[id].onicecandidate = handleIceCandidate;
         pc[id].onaddstream = handleRemoteStreamAdded;
         pc[id].onremovestream = handleRemoteStreamRemoved;

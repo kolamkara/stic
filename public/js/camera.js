@@ -9,6 +9,7 @@ socket.emit('join',room);
 var localStream,pc=[];
 // socket.emit('join',room);
 var localVideo = document.querySelector('#localVideo');
+var pc_config= {'iceServers': [{'url': 'stun:stun.l.google.com:19302'}]};
 //var remoteVideo = document.querySelector('#remoteVideo');
 navigator.mediaDevices.getUserMedia({
     audio: false,
@@ -67,7 +68,7 @@ function doCall(id) {
 
 function createPeerConnection(id) {
   try {
-    pc[id] = new RTCPeerConnection(null);
+    pc[id] = new RTCPeerConnection(pc_config);
     pc[id].onicecandidate = handleIceCandidate;
     // pc.onaddstream = handleRemoteStreamAdded;
     // pc.onremovestream = handleRemoteStreamRemoved;
